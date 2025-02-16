@@ -8,35 +8,35 @@
         <Console name="console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
-        <RollingFile name="infoFile" fileName="logs/info.log" filePattern="logs/info%d{yyyy-MM-dd}.log.gz">
+        <RollingFile name="infoFile" fileName="logs/info.json" filePattern="logs/info%d{yyyy-MM-dd}.json.gz">
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true" />
             </Policies>
             <DefaultRolloverStrategy max="30"/>
         </RollingFile>
-        <RollingFile name="debugFile" fileName="logs/debug.log" filePattern="logs/debug%d{yyyy-MM-dd}.log.gz">
+        <RollingFile name="debugFile" fileName="logs/debug.json" filePattern="logs/debug%d{yyyy-MM-dd}.json.gz">
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true" />
             </Policies>
             <DefaultRolloverStrategy max="30"/>
         </RollingFile>
-        <RollingFile name="errorFile" fileName="logs/error.log" filePattern="logs/error%d{yyyy-MM-dd}.log.gz">
+        <RollingFile name="errorFile" fileName="logs/error.json" filePattern="logs/error%d{yyyy-MM-dd}.json.gz">
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true" />
             </Policies>
             <DefaultRolloverStrategy max="30"/>
         </RollingFile>
-        <RollingFile name="traceFile" fileName="logs/trace.log" filePattern="logs/error%d{yyyy-MM-dd}.log.gz">
+        <RollingFile name="traceFile" fileName="logs/trace.json" filePattern="logs/error%d{yyyy-MM-dd}.json.gz">
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true" />
             </Policies>
             <DefaultRolloverStrategy max="30"/>
         </RollingFile>
-        <RollingFile name="springFile" fileName="logs/spring.log" filePattern="logs/spring_%d{yyyy-MM-dd}.log.gz">
+        <RollingFile name="springFile" fileName="logs/spring.json" filePattern="logs/spring_%d{yyyy-MM-dd}.json.gz">
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true" />
