@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+    tools {
+        jdk 'Java_17'
+        maven 'maven_3.6.3'
+    }
+    stages {
+        stage('Build Application') {
+            steps {
+                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/amira921/Authentication-Service']])
+                bat 'mvn clean install'
+            }
+        }
+
+        stage('Build and Run Docker Image') {
+            steps {
+                script {
+                    bat '''
+                    docker ps -a -q --filter "name=auth-microservice" | findstr . >nul && (
+                        echo "Container auth-microservice exists. Stopping and removing it..."
+                        docker stop auth-microservice && docker rm auth-microservice
+                        echo "Removing old Docker image if it exists..."
+                        docker images -q auth-microservice | findstr . >nul && docker rmi -f auth-microservice || echo "No old image to remove"
+                        docker build -t auth-microservice .
+                        docker run -d -p 8081:8081 --name auth-microservice auth-microservice
+                    ) || (
+                        echo "Container auth-microservice does not exist, creating and starting it"
+                        docker build -t auth-microservice .
+                        docker run -d -p 8081:8081 --name auth-microservice auth-microservice
+                    )
+                    '''
+                }
+            }
+        }
+    }
+}
+
+
